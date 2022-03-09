@@ -1,0 +1,25 @@
+<select {{on 'change' this.updateLanguage}} aria-label='Language'>
+  <option value='en'>English</option>
+  <option value='fr'>French</option>
+</select>
+
+<form {{on 'submit' this.submit}}>
+  <label>
+    Login:
+    <input type='text' {{on 'change' (fn this.changeValue 'login')}} />
+  </label>
+  <label>
+    Password:
+    <input type='password' {{on 'change' (fn this.changeValue 'password')}} />
+  </label>
+  <button type='submit'>Submit</button>
+</form>
+
+{{#if this.validator.hasErrors}}
+  Errors detected!
+  <ul>
+    {{#each this.validator.errors as |error|}}
+      <li>{{error.message}}</li>
+    {{/each}}
+  </ul>
+{{/if}}
